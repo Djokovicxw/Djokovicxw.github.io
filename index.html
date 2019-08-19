@@ -51,6 +51,9 @@
 
 
   
+    <script src="/lib/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
 
 </head>
 
@@ -174,133 +177,6 @@
             
 
   
-    <article id="post-算法导论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class=" article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/08/19/算法导论/">算法导论</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/08/19/算法导论/" class="archive-article-date">
-        <time datetime="2019-08-19T06:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <hr>
-<p>title: 算法导论<br>date: 2019-08-01 21:14:58</p>
-<h2 id="tags-算法"><a href="#tags-算法" class="headerlink" title="tags: 算法"></a>tags: 算法</h2><h1 id="2-3-设计算法"><a href="#2-3-设计算法" class="headerlink" title="2.3 设计算法"></a>2.3 设计算法</h1><h2 id="2-3-1-分治法"><a href="#2-3-1-分治法" class="headerlink" title="2.3.1 分治法"></a>2.3.1 分治法</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p><strong>分解</strong>原问题为若干子问题，这些子问题是原问题的规模较小的实例。</p>
-<p><strong>解决</strong>这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。</p>
-<p><strong>合并</strong>这些子问题的解组成原问题的解。</p>
-<p>下面是归并排序的实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Merge</span><span class="params">(A, p, q, r)</span>:</span></span><br><span class="line">    L1 = [A[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(p, q + <span class="number">1</span>)]</span><br><span class="line">    L2 = [A[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(q + <span class="number">1</span>, r + <span class="number">1</span>)]</span><br><span class="line">    L1.append(math.inf)</span><br><span class="line">    L2.append(math.inf)</span><br><span class="line">    i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(p, r + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> (L1[i] &lt; L2[j]):</span><br><span class="line">            A[k] = L1[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A[k] = L2[j]</span><br><span class="line">            j += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Merge_sort</span><span class="params">(A, p, r)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> p &lt; r:</span><br><span class="line">        q = (p + r) // <span class="number">2</span></span><br><span class="line">        Merge_sort(A, p, q)</span><br><span class="line">        Merge_sort(A, q + <span class="number">1</span>, r)</span><br><span class="line">        Merge(A, p, q, r)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test</span></span><br><span class="line">A = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">0</span>]</span><br><span class="line">Merge_sort(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
-
-<pre><code>[0, 1, 2, 4, 5, 6, 8]</code></pre><h1 id="第四章-分治策略"><a href="#第四章-分治策略" class="headerlink" title="第四章 分治策略"></a>第四章 分治策略</h1><h2 id="4-1-最大子数组问题"><a href="#4-1-最大子数组问题" class="headerlink" title="4.1 最大子数组问题"></a>4.1 最大子数组问题</h2><p><strong>对于数组 A，称其和最大的非空连续子数组为最大子数组。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分治法</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="第十五章-动态规划"><a href="#第十五章-动态规划" class="headerlink" title="第十五章 动态规划"></a>第十五章 动态规划</h1><p><em>为了刷贪心的题，决定提前学习下贪心算法，结果打开书，告诉我学习贪心算法要先学习一下动态规划，于是，我开始了。</em></p>
-<blockquote>
-<p>动态规划方法通常用来求解<strong>最优化问题</strong>。</p>
-</blockquote>
-<p>设计动态规划算法的 4 个步骤：</p>
-<ol>
-<li>刻画一个最优解的结构特征。</li>
-<li>递归地定义最优解的值。</li>
-<li>计算最优解的值，通常采用自底向上的方法。</li>
-<li>利用计算出的信息构造一个最优解。</li>
-</ol>
-<p><strong>*重点在于对于重复求解的子问题，将其解保存起来，以空间换时间（time-memory-trade-off）</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 钢条切割问题</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">p = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">17</span>, <span class="number">17</span>, <span class="number">20</span>, <span class="number">24</span>, <span class="number">30</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Memoized_Cut_Rod_Aux</span><span class="params">(p, n, r)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> r[n] &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> r[n]</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        q = -math.inf</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                q = max(q, p[i] + Memoized_Cut_Rod_Aux(p, n - i, r))</span><br><span class="line">            <span class="keyword">except</span> IndexError:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">    r[n] = q</span><br><span class="line">    <span class="keyword">return</span> q</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Memoized_Cut_Rod</span><span class="params">(p, n)</span>:</span></span><br><span class="line">    r = [-math.inf <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n + <span class="number">1</span>)]</span><br><span class="line">    print(len(r))</span><br><span class="line">    <span class="keyword">return</span> Memoized_Cut_Rod_Aux(p, n, r)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Bottom_Up_Cut_Rod</span><span class="params">(p, n)</span>:</span></span><br><span class="line">    r = [<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        q = <span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, j + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                q = max(q, p[i] + r[j - i])</span><br><span class="line">            <span class="keyword">except</span> IndexError:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">        r.append(q)</span><br><span class="line">    <span class="keyword">return</span> r[n]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bottom_Up_Cut_Rod(p, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>60</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bottom_Up_Cut_Rod(p, <span class="number">50</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>150</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 斐波那契数列的 O(n) 实现 -- 动态规划思想</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fib</span><span class="params">(n)</span>:</span></span><br><span class="line">    r = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line">        r.append(r[i<span class="number">-1</span>] + r[i<span class="number">-2</span>])</span><br><span class="line">    <span class="keyword">return</span> r[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fib(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>10946</code></pre><h2 id="15-2-矩阵链乘法"><a href="#15-2-矩阵链乘法" class="headerlink" title="15.2 矩阵链乘法"></a>15.2 矩阵链乘法</h2><pre><code>问题描述：给定 n 个矩阵 &lt;A_1, A_2, ..., A_n&gt;，求完全括号化方案，使得计算 A_1 * A_2 * A_3 * ... * A_n 所需标量乘法次数最少。</code></pre><p>A[n] 矩阵链。为了方便，用序列 p = &lt;p0, p1, p2, … pn&gt; 表示， A[i] 的规模 = p[i-1] * p[i]。这样可以保证矩阵链中的矩阵都是可容的。用 m[i, j] 表示 A[i] * A[i+1] * … * A[j] 需要的最少乘法次数。显然，m[i, i] = 0 且问题的解为 m[1, n]</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Matirx_Chain_Order</span><span class="params">(p)</span>:</span></span><br><span class="line">    n = len(p) - <span class="number">1</span>   <span class="comment"># n -&gt; nums of matrix</span></span><br><span class="line">    m = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n + <span class="number">1</span>)] </span><br><span class="line">    s = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">2</span>, n + <span class="number">1</span>): <span class="comment">## l is the length of chain</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n - l + <span class="number">2</span>):</span><br><span class="line">            j = i + l - <span class="number">1</span></span><br><span class="line">            m[i][j] = math.inf</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i, j):</span><br><span class="line">                q = m[i][k] + m[k + <span class="number">1</span>][j] + p[i<span class="number">-1</span>] * p[k] * p[j]</span><br><span class="line">                <span class="keyword">if</span> q &lt; m[i][j]:</span><br><span class="line">                    m[i][j] = q</span><br><span class="line">                    s[i][j] = k</span><br><span class="line">                    </span><br><span class="line">    <span class="keyword">return</span> m[<span class="number">1</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = [<span class="number">30</span>, <span class="number">35</span>, <span class="number">15</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">25</span>]</span><br><span class="line">Matirx_Chain_Order(p)</span><br></pre></td></tr></table></figure>
-
-<pre><code>15125</code></pre>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/08/19/算法导论/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-随笔" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -322,6 +198,9 @@
 </a>
 
   
+  
+    
+
   
   </header>
   
@@ -406,6 +285,9 @@
 
   
   
+    
+
+  
   </header>
   
   <div class="article-entry" itemprop="articleBody">
@@ -467,6 +349,98 @@
 
 
   
+    <article id="post-算法导论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class=" article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/08/01/算法导论/">算法导论</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/08/01/算法导论/" class="archive-article-date">
+        <time datetime="2019-08-01T06:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="2-3-设计算法"><a href="#2-3-设计算法" class="headerlink" title="2.3 设计算法"></a>2.3 设计算法</h1><h2 id="2-3-1-分治法"><a href="#2-3-1-分治法" class="headerlink" title="2.3.1 分治法"></a>2.3.1 分治法</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p><strong>分解</strong>原问题为若干子问题，这些子问题是原问题的规模较小的实例。</p>
+<p><strong>解决</strong>这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。</p>
+<p><strong>合并</strong>这些子问题的解组成原问题的解。</p>
+<p>下面是归并排序的实现：</p>
+    
+    <a class="article-more-a" href="/2019/08/01/算法导论/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/08/01/算法导论/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
@@ -479,11 +453,11 @@
     	<div class="footer-left">
     		&copy; 2018-2019 Djokovicxw
     	</div>
-      	<div class="footer-right">
+      	<!-- <div class="footer-right">
 			
 			
       		GitHub:<a href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">hexo-theme-yilia-plus</a> by Litten
-      	</div>
+      	</div> -->
     </div>
   </div>
   
@@ -719,14 +693,6 @@
   </div>
 
   
-<script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
-<script>
-  POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
-  document.body.addEventListener('input', POWERMODE);
-
-</script>
-
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
