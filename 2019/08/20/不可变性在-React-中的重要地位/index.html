@@ -9,18 +9,18 @@
   <title>不可变性在 React 中的重要地位 | Djokovicxw 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。 直接修改数据12var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;play.score = 2;  新数据替换旧数据1234567var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;var">
+  <meta name="description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不可变性在 React 中的重要地位">
 <meta property="og:url" content="http://makinoki.xyz/2019/08/20/不可变性在-React-中的重要地位/index.html">
 <meta property="og:site_name" content="Djokovicxw 的博客">
-<meta property="og:description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。 直接修改数据12var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;play.score = 2;  新数据替换旧数据1234567var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;var">
+<meta property="og:description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T12:17:20.610Z">
+<meta property="og:updated_time" content="2019-08-20T12:18:13.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不可变性在 React 中的重要地位">
-<meta name="twitter:description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。 直接修改数据12var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;play.score = 2;  新数据替换旧数据1234567var player = &amp;#123;score: 1, name: &apos;Jeff&apos;&amp;#125;;var">
+<meta name="twitter:description" content="为什么不可变性在 React 中非常重要一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。">
   
     <link rel="alternative" href="/atom.xml" title="Djokovicxw 的博客" type="application/atom+xml">
   
@@ -226,6 +226,8 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h2 id="为什么不可变性在-React-中非常重要"><a href="#为什么不可变性在-React-中非常重要" class="headerlink" title="为什么不可变性在 React 中非常重要"></a>为什么不可变性在 React 中非常重要</h2><p>一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。</p>
+<a id="more"></a>
+
 <h3 id="直接修改数据"><a href="#直接修改数据" class="headerlink" title="直接修改数据"></a>直接修改数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = &#123;<span class="attr">score</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'Jeff'</span>&#125;;</span><br><span class="line">play.score = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
 <h3 id="新数据替换旧数据"><a href="#新数据替换旧数据" class="headerlink" title="新数据替换旧数据"></a>新数据替换旧数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = &#123;<span class="attr">score</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'Jeff'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newPlayer = <span class="built_in">Object</span>.assign(&#123;&#125;, player, &#123;<span class="attr">score</span>: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者写成</span></span><br><span class="line"><span class="keyword">var</span> newPlayer = &#123;...player, <span class="attr">score</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">// player 的数据并未被修改，但是接下来的代码就可以用 newPlayer 代替 player</span></span><br></pre></td></tr></table></figure>
@@ -507,15 +509,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
