@@ -9,18 +9,18 @@
   <title>算法导论 | Djokovicxw 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。 步骤分解原问题为若干子问题，这些子问题是原问题的规模较小的实例。 解决这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。 合并这些子问题的解组成原问题的解。 下面是归并排序的实现：">
+  <meta name="description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法导论">
 <meta property="og:url" content="http://makinoki.xyz/2019/08/01/算法导论/index.html">
 <meta property="og:site_name" content="Djokovicxw 的博客">
-<meta property="og:description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。 步骤分解原问题为若干子问题，这些子问题是原问题的规模较小的实例。 解决这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。 合并这些子问题的解组成原问题的解。 下面是归并排序的实现：">
+<meta property="og:description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T12:35:43.175Z">
+<meta property="og:updated_time" content="2019-08-20T12:19:16.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论">
-<meta name="twitter:description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。 步骤分解原问题为若干子问题，这些子问题是原问题的规模较小的实例。 解决这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。 合并这些子问题的解组成原问题的解。 下面是归并排序的实现：">
+<meta name="twitter:description" content="2.3 设计算法2.3.1 分治法思想将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。">
   
     <link rel="alternative" href="/atom.xml" title="Djokovicxw 的博客" type="application/atom+xml">
   
@@ -226,12 +226,12 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="2-3-设计算法"><a href="#2-3-设计算法" class="headerlink" title="2.3 设计算法"></a>2.3 设计算法</h1><h2 id="2-3-1-分治法"><a href="#2-3-1-分治法" class="headerlink" title="2.3.1 分治法"></a>2.3.1 分治法</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。</p>
+<a id="more"></a>
+
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p><strong>分解</strong>原问题为若干子问题，这些子问题是原问题的规模较小的实例。</p>
 <p><strong>解决</strong>这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。</p>
 <p><strong>合并</strong>这些子问题的解组成原问题的解。</p>
 <p>下面是归并排序的实现：</p>
-<a id="more"></a>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Merge</span><span class="params">(A, p, q, r)</span>:</span></span><br><span class="line">    L1 = [A[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(p, q + <span class="number">1</span>)]</span><br><span class="line">    L2 = [A[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(q + <span class="number">1</span>, r + <span class="number">1</span>)]</span><br><span class="line">    L1.append(math.inf)</span><br><span class="line">    L2.append(math.inf)</span><br><span class="line">    i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(p, r + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> (L1[i] &lt; L2[j]):</span><br><span class="line">            A[k] = L1[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A[k] = L2[j]</span><br><span class="line">            j += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Merge_sort</span><span class="params">(A, p, r)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> p &lt; r:</span><br><span class="line">        q = (p + r) // <span class="number">2</span></span><br><span class="line">        Merge_sort(A, p, q)</span><br><span class="line">        Merge_sort(A, q + <span class="number">1</span>, r)</span><br><span class="line">        Merge(A, p, q, r)</span><br></pre></td></tr></table></figure>
@@ -555,11 +555,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
