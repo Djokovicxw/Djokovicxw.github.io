@@ -177,6 +177,101 @@
             
 
   
+    <article id="post-不可变性在-React-中的重要地位" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class=" article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/08/20/不可变性在-React-中的重要地位/">不可变性在 React 中的重要地位</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/08/20/不可变性在-React-中的重要地位/" class="archive-article-date">
+        <time datetime="2019-08-20T12:02:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="为什么不可变性在-React-中非常重要"><a href="#为什么不可变性在-React-中非常重要" class="headerlink" title="为什么不可变性在 React 中非常重要"></a>为什么不可变性在 React 中非常重要</h2><p>一般来说，有两种修改数据方式。一种是直接修改变量，另一种是使用新的数据替旧数据。</p>
+<h3 id="直接修改数据"><a href="#直接修改数据" class="headerlink" title="直接修改数据"></a>直接修改数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = &#123;<span class="attr">score</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'Jeff'</span>&#125;;</span><br><span class="line">play.score = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="新数据替换旧数据"><a href="#新数据替换旧数据" class="headerlink" title="新数据替换旧数据"></a>新数据替换旧数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = &#123;<span class="attr">score</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'Jeff'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newPlayer = <span class="built_in">Object</span>.assign(&#123;&#125;, player, &#123;<span class="attr">score</span>: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者写成</span></span><br><span class="line"><span class="keyword">var</span> newPlayer = &#123;...player, <span class="attr">score</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">// player 的数据并未被修改，但是接下来的代码就可以用 newPlayer 代替 player</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种方式的好处有以下几点"><a href="#第二种方式的好处有以下几点" class="headerlink" title="第二种方式的好处有以下几点"></a>第二种方式的好处有以下几点</h3><ol>
+<li>简化复杂的功能，如“时间旅行”，即运行状态回溯的功能。</li>
+<li>跟踪数据的改变，直接修改数据则很难追踪到数据的改变。</li>
+<li>确定在 React 中何时重新渲染。不可变性可以帮助我们在 React 中创建 <em>pure components</em>。我们可以很轻松地确定不可变数据是否发生了变化，从而确定何时对组件进行重新渲染。</li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/08/20/不可变性在-React-中的重要地位/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-随笔" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -557,7 +652,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,7 +664,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
