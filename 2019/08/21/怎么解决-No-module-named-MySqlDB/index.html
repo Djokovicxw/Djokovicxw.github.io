@@ -10,14 +10,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="项目环境我的项目采用的是 flask-sqlalchemy + MySQL，而今天在部署 flask 的时候遇到一个问题： 1ImportError: No module named &apos;MySQLdb&apos;">
-<meta name="keywords" content="python3 mysql flask">
+<meta name="keywords" content="python3, flask, MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎么解决 No module named MySqlDB">
 <meta property="og:url" content="http://makinoki.xyz/2019/08/21/怎么解决-No-module-named-MySqlDB/index.html">
 <meta property="og:site_name" content="Djokovicxw 的博客">
 <meta property="og:description" content="项目环境我的项目采用的是 flask-sqlalchemy + MySQL，而今天在部署 flask 的时候遇到一个问题： 1ImportError: No module named &apos;MySQLdb&apos;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T10:06:30.307Z">
+<meta property="og:updated_time" content="2019-08-21T10:08:33.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎么解决 No module named MySqlDB">
 <meta name="twitter:description" content="项目环境我的项目采用的是 flask-sqlalchemy + MySQL，而今天在部署 flask 的时候遇到一个问题： 1ImportError: No module named &apos;MySQLdb&apos;">
@@ -205,7 +205,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">267字</span>
+      <span class="post-count">269字</span>
     </span>
   </span>
 
@@ -231,14 +231,14 @@
 <a id="more"></a>
 
 <h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>这个问题之前也遇到过，了解到 MySQLdb 并不支持 Python3，之前（macOS + python3.7）采用的解决办法是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mysqlclient</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install mysqlclient</span><br></pre></td></tr></table></figure>
 
 <p>但是这方法在 Win10 上面却不行，会安装失败。然后又搜索了其他方法，其中一条是:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mysqlclient==1.3.4</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install mysqlclient==1.3.4</span><br></pre></td></tr></table></figure>
 
 <p>这条方法似乎适用于 win10 + python3.5 （笔者并没有进行测试，而是根据大家的评论来判断的），但并不适用于笔者的 win 10 + python3.7 的环境（实测不行）。</p>
 <p>于是又尝试了其他答案，其中这条成功解决了问题：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install PyMySQL</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install PyMySQL</span><br></pre></td></tr></table></figure>
 
 <p>然后在项目的 <code>__init__.py</code> 中导入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
@@ -289,7 +289,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python3 mysql flask</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python3, flask, MySQL</a>
         		</li>
       		
 		</ul>
@@ -524,11 +524,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python3 mysql flask</a>
+                <a href="javascript:void(0)" class="js-tag color2">python3, flask, MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,10 +541,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
